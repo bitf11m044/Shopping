@@ -1,0 +1,159 @@
+@{
+    Layout = null;
+    }
+@model Final_Project.Models.User
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Bootbusiness | Short description about company">
+    <meta name="author" content="Your name">
+      <script type="text/javascript" src="~/Scripts/jquery-1.7.1.js"></script>
+      
+    <title>Bootbusiness | Give unique title of the page here</title>
+    <!-- Bootstrap -->
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet">
+    <!-- Bootstrap responsive -->
+    <link href="~/Content/bootstrap-responsive.min.css" rel="stylesheet">
+    <!-- Font awesome - iconic font with IE7 support --> 
+    <link href="~/Content/font-awesome.css" rel="stylesheet">
+    <link href="~/Content/font-awesome-ie7.css" rel="stylesheet">
+    <!-- Bootbusiness theme -->
+    <link href="~/Content/boot-business.css" rel="stylesheet"> 
+      <script src="~/Scripts/bootstrap.js" type="text/javascript"></script>
+     <script type="text/javascript">
+          var test = true;
+          $(document).ready(function () {
+              $("#d1").hide();
+              $("#d2").hide();
+              $("#d3").hide();
+              $("#checking").hide();
+              $("#email").mouseleave(function () {
+                  $("#checking").show();
+                  $("#result").hide();
+                  var email = $("#email").val();
+                  $.getJSON("/Account/Check2?id=" + email, function (data) {
+                      if (data == true) {
+                          $("#checking").hide();
+                          $("#result").show();
+                          //alert("Username is already exist");
+                          $("#result1").text("Username already exist");
+                      }
+                      else {
+                          $("#checking").hide();
+                      }
+              });
+              });
+              $("#form1").submit(function (e) {
+                  var email = $("#email").val();
+                  var pass = $("#password").val();
+                  var cpass = $("#cpass").val();
+                  if (email == "")
+                  {
+                      $("#d1").show();
+                      $("#p1").text("Fill it");
+                      e.preventDefault();
+                  }
+                  if (pass == "") {
+                      $("#d2").show();
+                      $("#p2").text("Fill it");
+                      e.preventDefault();
+                  }
+                  if (cpass == "") {
+                      $("#d3").show();
+                      $("#p3").text("Fill it");
+                      e.preventDefault();
+                  }
+                  else if (cpass != pass)
+                  {
+                      $("#d3").show();
+                      $("#p3").text("Password does not match");
+                      e.preventDefault();
+                  }
+
+              });
+              $("#email").keyup(function () {
+                  $("#d1").hide();
+              });
+              $("#password").keyup(function () {
+                  $("#d2").hide();
+              });
+              $("#cpass").keyup(function () {
+                  $("#d3").hide();
+              });
+          });
+      </script>
+
+  </head>
+  <body>
+    <!-- Start: HEADER -->
+    <header>
+        <p style="font-size:10px"></p>
+      <!-- Start: Navigation wrapper -->
+        <nav class="nav navbar-inverse">
+      <div class="navbar navbar-fixed-top">
+        <div class="navbar-inner" >
+          <div class="container">
+            <a href="index.html" class="brand brand-bootbus">Online Shopping</a>
+            <!-- Below button used for responsive navigation -->
+            <button type="button" class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+            </button>
+              </div>
+            </div>
+          </div>
+            </nav>
+            
+    </header>
+    <!-- End: HEADER -->
+    <!-- Start: MAIN CONTENT -->
+    <div class="content">
+      <div class="container">
+        <div class="page-header">
+          <h1>Signup to Online shopping</h1>
+        </div>
+               <form action="/Account/Signup" method="get" id="form1">
+                    
+                           <div class="row">
+                            <div class="span6 offset3">
+                               <h4 class="widget-header"><i class="icon-gift"></i>Register for Membership</h4>
+                                <div class="widget-body">
+                            <div class="center-align">
+                                <div class="form-horizontal form-signin-signup">
+                                <div id="valid"></div>
+                            @Html.TextBoxFor(model=> model.email, new { @id="email",@placeholder="Email"})<br />
+                                 <div id="d1"><p id="p1"  style="margin-left:370px;font-size:10px"></p></div>
+                                <div id="result"><p id="result1"></p></div>
+                                <div id="checking">Checking please wait........</div>
+                                @Html.PasswordFor(model => model.password, new { @id="password",@placeholder="Password"})
+                                    <div id="d2"><p id="p2"  style="margin-left:370px;font-size:10px"></p></div>
+                                <input type="password" name="password_con" placeholder="Password Confirmation" id="cpass"/>
+                                   <div id="d3"> <p id="p3" style="margin-left:370px;font-size:10px"></p></div>
+                            <div>
+                            <input type="submit" value="Signup" id="button_signup" class="btn btn-primary btn-large">
+                             </div>
+                                    </div>
+                                      <h4><i class="icon-question-sign"></i>Have already an account?</h4>
+                                <a href="/Home/Signin" class="btn btn-large bottom-space">Signin</a>
+                            </div>
+                            </div>
+                            </div>
+                                </div>
+                   </form>
+          </div>
+        </div>
+                      
+              
+    <!-- End: MAIN CONTENT -->
+    <!-- Start: FOOTER -->
+    <footer>
+      <p>copy rights to shehzad</p>
+    </footer>
+    <!-- End: FOOTER -->
+    <script type="text/javascript" src="~/Scripts/jquery.min.js"></script>
+    <script type="text/javascript" src="~/Scripts/bootstrap.min.js"></script>
+    <script type="text/javascript" src="~/Scripts/boot-business.js"></script>
+  </body>
+</html>

@@ -1,0 +1,38 @@
+﻿@{
+    ViewBag.Title = "Checkout";
+}
+
+<h2>Checkout</h2>
+<table border="1" style="margin-left:200px;margin-top:200px">
+    <tr>
+        <th>
+            ID
+        </th>
+        <th>
+            Category
+        </th>
+        <th>
+            Title
+        </th>
+        <th>
+            Price
+        </th>
+    </tr>
+@foreach (var q in Model)
+{
+     <tr>
+         <td>
+             @q.Id
+         </td>
+         <td>
+             @q.Category
+         </td>
+         <td>
+             @q.title
+         </td>
+         <td>
+             @q.price
+         </td>
+     </tr>
+}
+</table>

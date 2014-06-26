@@ -1,0 +1,174 @@
+﻿@{
+    ViewBag.Title = "Mobile";
+    Layout ="~/Views/Shared/common.cshtml";
+}
+<script type="text/javascript">
+    $(document).ready(function () {
+        $("#search").keyup(function () {
+            var bit = $("#search").val();
+
+            $.getJSON("/Account/get_list?id=" + bit, function (data) {
+                var list = [];
+                $.each(data, function (i, val) {
+                    list[i] = val;
+                });
+                $('#search').autocomplete({ source: list });
+            });
+        });
+    });
+</script>
+		<!-- End Search -->
+		<!-- Begin Header -->
+  <input type="text" name="search" id="search" style="margin-left:1150px;background-color:white;" />
+		<div id="header" class="shell">
+			<h1 id="logo"><a class="notext" href="#" title="PC Store">PC Store</a></h1>
+		</div>
+		<!-- End Header -->
+		<!-- Begin Navigation -->
+		<div id="navigation">
+			<div class="shell">
+			 @Html.Partial("shared", "Home");
+				<div class="cl">&nbsp;</div>
+			</div>
+		</div>
+		<!-- End Navigation -->
+		<!-- Begin Slider -->
+		<div id="slider">
+			<div class="slider-outer">
+				<div class="slider-inner shell">
+					<!-- Begin Slider Items -->
+					<ul class="slider-items">
+						<li>
+							<img src="~/Images/slide-img1.jpg" alt="Slide Image 1" />
+							<div class="slide-entry">
+								<h2>Some Tittle Here</h2>
+								<h3>Sed condimentum metus at risus </h3>
+								<p>Maecenas eget purus arcu, in vestibulum libero. Ali-quam facilisis rhoncus eros, quis rutrum dolor tincid-unt ac. Duis vel consequat justo.</p>
+							</div>
+							<a href="#" class="more" title="View More">View More</a>
+						</li>
+						<li>
+							<img src="~/Images/slide-img1.jpg" alt="Slide Image 2" />
+							<div class="slide-entry">
+								<h2>Some Tittle Here</h2>
+								<h3>Sed condimentum metus at risus </h3>
+								<p>Maecenas eget purus arcu, in vestibulum libero. Ali-quam facilisis rhoncus eros, quis rutrum dolor tincid-unt ac. Duis vel consequat justo.</p>
+							</div>
+							<a href="#" class="more" title="View More">View More</a>
+						</li>
+						<li>
+							<img src="~/Images/slide-img1.jpg" alt="Slide Image 3" />
+							<div class="slide-entry">
+								<h2>Some Tittle Here</h2>
+								<h3>Sed condimentum metus at risus </h3>
+								<p>Maecenas eget purus arcu, in vestibulum libero. Ali-quam facilisis rhoncus eros, quis rutrum dolor tincid-unt ac. Duis vel consequat justo.</p>
+							</div>
+							<a href="#" class="more" title="View More">View More</a>
+						</li>
+						<li>
+							<img src="~/Images/slide-img1.jpg" alt="Slide Image 4" />
+							<div class="slide-entry">
+								<h2>Some Tittle Here</h2>
+								<h3>Sed condimentum metus at risus </h3>
+								<p>Maecenas eget purus arcu, in vestibulum libero. Ali-quam facilisis rhoncus eros, quis rutrum dolor tincid-unt ac. Duis vel consequat justo.</p>
+							</div>
+							<a href="#" class="more" title="View More">View More</a>
+						</li>
+						<li>
+							<img src="~/Images/slide-img1.jpg" alt="Slide Image 5" />
+							<div class="slide-entry">
+								<h2>Some Tittle Here</h2>
+								<h3>Sed condimentum metus at risus </h3>
+								<p>Maecenas eget purus arcu, in vestibulum libero. Ali-quam facilisis rhoncus eros, quis rutrum dolor tincid-unt ac. Duis vel consequat justo.</p>
+							</div>
+							<a href="#" class="more" title="View More">View More</a>
+						</li>
+					</ul>
+					<!-- End Slider Items -->
+					<div class="cl">&nbsp;</div>
+					<div class="slider-controls">
+						
+					</div>
+				</div>
+			</div>
+			<div class="cl">&nbsp;</div>
+		</div>
+		<!-- End Slider -->
+		<!-- Begin Main -->
+		<div id="main">
+			<!-- Begin Inner -->
+			<div class="inner">
+				<div class="shell">
+					<!-- Begin Left Sidebar -->
+					<div id="left-sidebar" class="sidebar">
+						<ul>
+							<li class="widget">
+								<h2>Categories</h2>
+								<div class="widget-entry">
+								@Html.Partial("Items","Home")
+								</div>
+							</li>
+							<li class="widget">
+								<h2>Information</h2>
+								<div class="widget-entry">
+									@Html.Partial("share2","Home")
+								</div>
+							</li>
+							<li class="widget">
+								<h2>Shopping Card</h2>
+								<div class="widget-entry">
+									<a href="/Home/Checkout" class="items" title="Shopping Card Items">@ViewBag.collection</a>
+								</div>
+							</li>
+						</ul>
+					</div>
+					<!-- End Sidebar -->
+					<!-- Begin Content -->
+					<div id="content">
+						<!-- Begin Post -->
+						<div class="post">
+							<h2>Welcome to Mobile Store<span class="title-bottom">&nbsp;</span></h2>
+							<p>Maecenas eget purus arcu, in vestibulum libero. Aliquam facilisis rhoncus eros, quis rutrum dolor tincid-unt ac. Duis vel consequat justo. Praesent felis mauris, ultricies nec tincidunt vitae, dignissim ac risus. Suspendisse in sem sit amet quam adipiscing interdum. Cras ac lacinia enim. Fusce eros odio, lacinia id egestas id, adipiscing a erat. Integer lacinia augue quis eros condimentum ac varius nunc lacinia. </p>
+						</div>
+						<!-- End Post -->
+						<!-- Begin Products -->
+						<div id="products">
+							<h2>Mobile Products<span class="title-bottom">&nbsp;</span></h2>
+                            @foreach(var item in Model)
+                            {
+							    <div class="product">
+								    <a href="/Home/Show_Image/@item.Id"  title="Product 1">
+									    <span class="title">@item.title</span>
+									    <img src="~/Images/@item.link" alt="Product Image 1" id="image1" style="width:175px;height:150px"/>
+									    <span class="number">Product 1</span>
+									    <span class="price"><span>$</span>@item.price</span>
+                                     
+								    </a>
+                                     <form action="/Home/Add_To_Cart/@item.Id" method="get">
+                                        <input type="submit" value="Add to cart" class="btn btn-success btn-lg" />
+                                    </form>
+							    </div>
+                               
+                            }
+						
+							<div class="cl">&nbsp;</div>
+						</div>
+						<!-- End Products -->
+					</div>
+					<!-- End Content -->
+					<div class="cl">&nbsp;</div>
+				</div>
+			</div>
+			<!-- End Inner -->
+		</div>
+		<!-- End Main -->
+		<!-- Begin Footer -->
+		<div id="footer">
+			<div class="shell">
+			@Html.Partial("footer","Home")
+				
+				<div class="cl">&nbsp;</div>
+			</div>
+		</div>
+		<!-- End Footer -->
+	<!-- End Wrapper -->

@@ -1,0 +1,145 @@
+﻿@{
+    Layout = null;
+    }
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Bootbusiness | Short description about company">
+    <meta name="author" content="Your name">
+      <script type="text/javascript" src="~/Scripts/jquery-1.7.1.js"></script>
+      
+    <title>Bootbusiness | Give unique title of the page here</title>
+    <!-- Bootstrap -->
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet">
+    <!-- Bootstrap responsive -->
+    <link href="~/Content/bootstrap-responsive.min.css" rel="stylesheet">
+    <!-- Font awesome - iconic font with IE7 support --> 
+    <link href="~/Content/font-awesome.css" rel="stylesheet">
+    <link href="~/Content/font-awesome-ie7.css" rel="stylesheet">
+    <!-- Bootbusiness theme -->
+    <link href="~/Content/boot-business.css" rel="stylesheet"> 
+      <script src="~/Scripts/bootstrap.js" type="text/javascript"></script>
+     <script type="text/javascript">
+          var test = true;
+          $(document).ready(function () {
+              $("#title1").hide();
+              $("#price1").hide();
+              $("#des1").hide();
+              $("#file1").hide();
+              $("#form1").submit(function (e) {
+                  var title = $("#t").val();
+                  var des = $("#d").val();
+                  var price = $("#p").val();
+                  var file = $("#file").val();
+                  if (title == "")
+                  {
+                      $("#title1").show();
+                      $("#title2").text("Fill it");
+                      e.preventDefault();
+                  }
+                  if (des == "") {
+                      $("#des1").show();
+                      $("#des2").text("Fill it");
+                      e.preventDefault();
+                  }
+                  if (price == "") {
+                      $("#price1").show();
+                      $("#price2").text("Fill it");
+                      e.preventDefault();
+                  }
+                  if (file == "") {
+                      $("#file1").show();
+                      $("#file2").text("Fill it");
+                      e.preventDefault();
+                  }
+
+
+
+              });
+          });
+      </script>
+
+  </head>
+  <body>
+    <!-- Start: HEADER -->
+    <header>
+        <p style="font-size:10px"></p>
+      <!-- Start: Navigation wrapper -->
+        <nav class="nav navbar-inverse">
+      <div class="navbar navbar-fixed-top">
+        <div class="navbar-inner" >
+          <div class="container">
+            <a href="index.html" class="brand brand-bootbus">Online Shopping</a>
+            <!-- Below button used for responsive navigation -->
+            <button type="button" class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+            </button>
+              </div>
+            </div>
+          </div>
+            </nav>
+            
+    </header>
+    <!-- End: HEADER -->
+    <!-- Start: MAIN CONTENT -->
+    <div class="content">
+      <div class="container">
+        <div class="page-header">
+          <h1>Add Product</h1>
+        </div>
+                      <form action="/Account/Save_Product" method="post" enctype="multipart/form-data" id="form1">
+                           <div class="row">
+                            <div class="span6 offset3">
+                               <h4 class="widget-header"><i class="icon-gift"></i>Add New Product</h4>
+                                <div class="widget-body">
+                            <div class="center-align">
+                                <div class="form-horizontal form-signin-signup">
+                                <div id="valid"></div>
+                                 <input type="text" name="t" id="t" placeholder="Title" /> <div id="title1"><p id="title2" style="font-size:10px;margin-right:370px;"></p></div>
+                                   
+                                    <input type="text" name="p" id="p" placeholder="price" /> <div id="price1"><p id="price2" style="font-size:10px;margin-right:370px;"></p></div>
+                                    
+                                    <input type="text" name="d" id="d" placeholder="Description" /> <div id="des1"><p id="des2" style="font-size:10px;margin-right:370px;"></p></div>
+                                    
+                                  <select name="c" style="margin-left:170px">
+                                      <option >--Select option--</option>
+                                        <option>Mobile</option>
+                                        <option>Desktop</option>
+                                        <option>Laptop</option>
+                                        <option>Notebook</option>
+                                        <option>Component</option>
+                                        <option>Software</option>
+                                        <option>PDA</option>
+                                        <option>Camera</option>
+                                        <option>MP3</option>
+                                      <option>Tab</option>
+                                    </select>Select Category<br /><br />
+                                    <input type="file" name="file" id="file" value="file" style="margin-left:260px" />  <div id="file1"><p id="file2" style="font-size:10px;margin-right:370px;"></p></div>
+                                   
+                            <div>
+                            <input type="submit" value="Add Product" id="save" class="btn btn-primary btn-large">
+                             </div>
+                                    </div>
+                            </div>
+                            </div>
+                            </div>
+                                </div>
+                          </form>
+          </div>
+        </div>
+                      
+              
+    <!-- End: MAIN CONTENT -->
+    <!-- Start: FOOTER -->
+    <footer>
+      <p>copy rights to shehzad</p>
+    </footer>
+    <!-- End: FOOTER -->
+    <script type="text/javascript" src="~/Scripts/jquery.min.js"></script>
+    <script type="text/javascript" src="~/Scripts/bootstrap.min.js"></script>
+    <script type="text/javascript" src="~/Scripts/boot-business.js"></script>
+  </body>
+</html>
