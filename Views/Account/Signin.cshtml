@@ -13,24 +13,33 @@
       <script type="text/javascript" src="~/Scripts/jquery-1.7.1.js"></script>
       <script type="text/javascript">
           $(document).ready(function () {
+              $("#exist").hide();
+              $("#email1").hide();
+              $("#pass1").hide();
               $("#signin").click(function () {
                   var email = $("#email").val();
                   var password = $("#pass").val();
                   if (email == "" && password == "")
                   {
-                      alert("Both fields are empty");
+                      $("#email1").show();
+                      $("#pass1").show();
+                      $("#email2").text("Fill it");
+                      $("#pass2").text("Fill it");
                   }
                   else if (email =="")
                   {
-                      alert("Enter the email please");
+                      $("#email1").show();
+                      $("#email2").text("Fill it");
                   }
                   else if (password == "") {
-                      alert("Enter the password");
+                      $("#pass1").show();
+                      $("#pass2").text("Fill it");
                   }
                   else {
                       $.getJSON("/Account/Check_For_Admin?mail=" + email + "&pass=" + password, function (data) {
                           if (data == false) {
-                              alert("Your name not exist please signup");
+                              $("#exist").show();
+                              $("#exist2").text("Email or password is incorrect");
                           }
                           else
                           {
@@ -39,6 +48,14 @@
                           }
                       });
                   }
+              });
+              $("#email").keyup(function () {
+                  $("#exist").hide();
+                  $("#email1").hide();
+              });
+              $("#pass").keyup(function () {
+                  $("#exist").hide();
+                  $("#pass1").hide();
               });
           });
       </script>
@@ -55,6 +72,9 @@
       <script src="~/Scripts/bootstrap.js" type="text/javascript"></script>
      
       <script src="~/Scripts/jquery.validate.js" type="text/javascript"></script>
+      <script src="~/Scripts/jquery.validate.min.js"></script>
+      <script src="~/Scripts/jquery.validate.unobtrusive.js"></script>
+      <script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
   </head>
   <body>
     <!-- Start: HEADER -->
@@ -84,6 +104,7 @@
         <div class="page-header">
           <h1>Welcome Admin</h1>
         </div>
+          <form method="post" action="/Home/Check_For_Admin" >
         <div class="row">
           <div class="span6 offset3">
             <h4 class="widget-header"><i class="icon-gift"></i>Admin Login</h4>
@@ -91,11 +112,14 @@
               <div class="center-align">
                     <div id="valid"></div>
                     <div class="form-horizontal form-signin-signup">
+                        <div id="exist"><p id="exist2" style="font-size:10px;margin-right:260px"></p></div>
                  
-                        @Html.TextBoxFor(model=>model.Email, new {@id="email",@placeholder="Email" })
+                        @Html.TextBoxFor(model=>model.Email, new {@id="email",@placeholder="Email" ,@required="required"})
                         @Html.ValidationMessageFor(model => model.Email)
+                        <div id="email1"><p id="email2" style="font-size:10px;margin-right:370px"></p></div>
                         @Html.PasswordFor(model=>model.Password, new {@id="pass", @placeholder="Password",@required="required"})
                         @Html.ValidationMessageFor(model => model.Password)
+                        <div id="pass1"><p id="pass2" style="font-size:10px;margin-right:370px"></p></div>
 
                         <br />
                         <br />
@@ -104,12 +128,14 @@
                         </div>
                          </div>
                 <h4><i class="icon-question-sign"></i>Not have account yet?</h4>
-                <a href="/Home/Signup" class="btn btn-large bottom-space">Signup</a>
+                <a href="/Home/Register" class="btn btn-large bottom-space">Signup</a>
               </div>
             </div>
           </div>
         </div>
+              </form>
       </div>
+        
     </div>
     <!-- End: MAIN CONTENT -->
     <!-- Start: FOOTER -->

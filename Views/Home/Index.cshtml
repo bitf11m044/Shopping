@@ -25,6 +25,7 @@
     <script type="text/javascript">
         $(document).ready(function () {
             $(document).ready(function () {
+                $("#search_image").hide();
                 $("#signin").click(function () {
                     var email = $("#email").val();
                     var password = $("#pass").val();
@@ -70,11 +71,19 @@
                 else {
                     $.getJSON("/Account/getSearchData?id=" + ser, function (data) {
                         if (data == false) {
-                            alert("Data not found");
+                            $("#t_pro").hide();
+                            $("#search_image").show();
+                            $("#search_image").empty();
+                            $("#search_image").append("<h1>Not Found</h1>");
                         }
                             else {
-                                var url = '/Account/show?title=' + data.title + '&cat=' + data.Category + '&price=' + data.price+'&link='+data.link;
-                                window.location.href = url;
+                                //var url = '/Account/show?title=' + data.title + '&cat=' + data.Category + '&price=' + data.price+'&link='+data.link;
+                            //window.location.href = url;
+     
+                            $("#t_pro").hide();
+                            $("#search_image").show();
+                            $("#search_image").empty();
+                            $("#search_image").append("<h2>" + data.title + "</h2><img src='/Images/" + data.link + "'/><br/><h2>" + data.price + "</h2><br/><h3>" + data.description + "</h3>");
                             }
                         });
                 }
@@ -235,6 +244,10 @@
 						</div>
 						<!-- End Post -->
 						<!-- Begin Products -->
+                        <div id="search_image">
+
+                        </div>
+                        <div id="t_pro">
 						<div id="products">
 							<h2>Latest Products<span class="title-bottom">&nbsp;</span></h2>
 							<div class="product">
@@ -306,6 +319,7 @@
 							</div>
 							<div class="cl">&nbsp;</div>
 						</div>
+                            </div>
 						<!-- End Products -->
 					</div>
 					<!-- End Content -->

@@ -16,7 +16,9 @@
               $("#update").hide();
               $("#cat").change(function () {
                   var cat = $("#cat").val();
-                  $.getJSON("/Account/get_products?category="+cat, function (data) {
+                  $.getJSON("/Account/get_products?category=" + cat, function (data) {
+                      $("#pro").empty();
+                      $("#pro").append("<option>--Select--</option>");
                       $.each(data, function (i, val) {
                           $("#pro").append("<option>" + val.title + "</option>");
                       });
